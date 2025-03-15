@@ -1,0 +1,433 @@
+body {
+    font-family: 'Arial', sans-serif;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #121212;
+    color: #f0f0f0;
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #222;
+    color: #f0f0f0;
+    border: 1px solid #444;
+    max-width: 100%;
+}
+
+select,
+button {
+    padding: 8px 15px;
+    margin-bottom: 20px;
+    background-color: #222;
+    color: #f0f0f0;
+    border: 1px solid #444;
+}
+
+button {
+    background-color: #FFFF00;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 0 5px rgba(255, 255, 0, 0.5);
+    text-transform: uppercase;
+}
+
+button:hover {
+    background-color: #CCCC00;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
+}
+
+#status {
+    margin-top: 10px;
+    padding: 10px;
+    display: none;
+    border-left: 4px solid;
+}
+
+.success {
+    background-color: #003300;
+    color: #00FF00;
+    border-color: #00FF00;
+}
+
+.error {
+    background-color: #330000;
+    color: #FF0000;
+    border-color: #FF0000;
+}
+
+.containerflex {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+#leftpanel, #rightpanel {
+    width: 50%;
+    padding: 15px;
+    box-sizing: border-box;
+    min-width: 300px;
+    flex: 1;
+}
+
+.info {
+    background-color: #000033;
+    color: #00FFFF;
+    border-color: #00FFFF;
+}
+
+#audioControls {
+    margin-top: 20px;
+    display: none;
+    background-color: #222;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    width: 100%;
+}
+
+.note {
+    background-color: #333;
+    border-left: 4px solid #FFFF00;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: #FFFF00;
+    word-break: break-word;
+}
+
+.effects-panel {
+    border: 1px solid #444;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #222;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.effect-group {
+    margin-bottom: 15px;
+    border-left: 3px solid #FFFF00;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.effect-toggle {
+    margin-bottom: 10px;
+}
+
+.effect-params {
+    margin-left: 20px;
+    padding: 10px;
+    background-color: #1a1a1a;
+    border-left: 3px solid #FFFF00;
+    width: calc(100% - 20px);
+}
+
+.effect-slider {
+    width: 100%;
+    margin: 5px 0;
+    accent-color: #FFFF00;
+}
+
+.slider-value {
+    display: inline-block;
+    min-width: 30px;
+    text-align: right;
+    color: #FFFF00;
+    font-weight: bold;
+}
+
+h3 {
+    margin-top: 0;
+    color: #FFFF00;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+}
+
+.effects-mode {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.mode-toggle {
+    display: flex;
+    align-items: center;
+    background-color: #1a1a1a;
+    padding: 8px 15px;
+    border-radius: 20px;
+    flex-wrap: wrap;
+}
+
+.mode-option {
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 15px;
+    margin: 0 2px;
+    color: #DDD;
+}
+
+.mode-active {
+    background-color: #FFFF00;
+    color: #000;
+    font-weight: bold;
+}
+
+.visualizer {
+    width: 100%;
+    height: 80px;
+    background-color: #000;
+    margin-bottom: 10px;
+    border: 1px solid #FFFF00;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 0, 0.3);
+    border-radius: 50%;
+    border-top-color: #FFFF00;
+    animation: spin 1s ease-in-out infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Styles pour les presets */
+.presets-container {
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #222;
+    width: 100%;
+}
+
+.presets-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.presets-header h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #FFFF00;
+}
+
+.preset-actions button {
+    background: none;
+    border: 1px solid #666;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 2px 5px;
+    margin-left: 5px;
+    border-radius: 3px;
+    color: #FFF;
+}
+
+.preset-actions button:hover {
+    background-color: #FFFF00;
+    color: #000;
+}
+
+.presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: 100%;
+}
+
+.preset-button {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    background-color: #333;
+    color: #FFFF00;
+    font-size: 14px;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 1px solid #666;
+}
+
+.preset-button.selected {
+    outline: 2px solid #FFFF00;
+    background-color: #000;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+}
+
+.preset-button.add-preset {
+    background-color: #000;
+    color: #FFFF00;
+    border: 1px dashed #FFFF00;
+}
+
+.preset-button:hover {
+    background-color: #FFFF00;
+    color: #000;
+}
+
+.preset-button:hover::after {
+    content: attr(data-preset);
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    color: #FFFF00;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    white-space: nowrap;
+    border: 1px solid #FFFF00;
+    z-index: 10;
+}
+
+/* Tooltip pour le clic droit */
+.context-tip {
+    display: none;
+    position: fixed;
+    background-color: #000;
+    color: #FFFF00;
+    padding: 5px 10px;
+    border-radius: 4px;
+    z-index: 1000;
+    font-size: 12px;
+    pointer-events: none;
+    border: 1px solid #FFFF00;
+}
+
+/* Styles pour la boîte de dialogue modale */
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none;
+}
+
+.modal-content {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.3);
+    width: 300px;
+    border: 1px solid #FFFF00;
+    max-width: 90%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #FFFF00;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.form-actions button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#cancel-save {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+#confirm-save {
+    background-color: #FFFF00;
+    color: #000;
+    font-weight: bold;
+}
+
+/* Additional acid house style elements */
+input[type="checkbox"] {
+    accent-color: #FFFF00;
+}
+
+select {
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    color: #f0f0f0;
+    max-width: 100%;
+}
+
+select:focus {
+    border-color: #FFFF00;
+    outline: none;
+}
+
+/* Acid house smiley icon for toggles */
+.effect-toggle label::before {
+    content: "⚡";
+    color: #FFFF00;
+    margin-right: 5px;
+}
+
+/* Media queries for better responsiveness */
+@media (max-width: 768px) {
+    .containerflex {
+        flex-direction: column;
+    }
+    
+    #leftpanel, #rightpanel {
+        width: 100%;
+    }
+    
+    .presets-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .preset-actions {
+        margin-top: 10px;
+    }
+}
