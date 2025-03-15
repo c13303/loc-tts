@@ -1,0 +1,60 @@
+{
+    "presets": {
+      "none": {
+        "delay": { "toggle": false },
+        "filter": { "toggle": false },
+        "lfo": { "toggle": false },
+        "distortion": { "toggle": false },
+        "reverb": { "toggle": false },
+        "speed": { "toggle": false, "value": 1.0 }
+      },
+      "robot": {
+        "delay": { "toggle": false },
+        "filter": { "toggle": true, "freq": 1500, "q": 15 },
+        "lfo": { "toggle": true, "freq": 4, "depth": 70, "target": "filter-freq", "wave": "square" },
+        "distortion": { "toggle": true, "amount": 0.3 },
+        "reverb": { "toggle": false },
+        "speed": { "toggle": true, "value": 1.2 }
+      },
+      "underwater": {
+        "delay": { "toggle": true, "time": 0.2, "feedback": 0.6 },
+        "filter": { "toggle": true, "freq": 800, "q": 8 },
+        "lfo": { "toggle": true, "freq": 0.5, "depth": 80, "target": "filter-freq", "wave": "sine" },
+        "distortion": { "toggle": false },
+        "reverb": { "toggle": true, "decay": 3.0, "mix": 0.5 },
+        "speed": { "toggle": true, "value": 0.8 }
+      },
+      "echo": {
+        "delay": { "toggle": true, "time": 0.5, "feedback": 0.7 },
+        "filter": { "toggle": false },
+        "lfo": { "toggle": false },
+        "distortion": { "toggle": false },
+        "reverb": { "toggle": false },
+        "speed": { "toggle": false, "value": 1.0 }
+      },
+      "cathedral": {
+        "delay": { "toggle": true, "time": 0.3, "feedback": 0.3 },
+        "filter": { "toggle": false },
+        "lfo": { "toggle": false },
+        "distortion": { "toggle": false },
+        "reverb": { "toggle": true, "decay": 5.0, "mix": 0.7 },
+        "speed": { "toggle": false, "value": 1.0 }
+      },
+      "chipmunk": {
+        "delay": { "toggle": false },
+        "filter": { "toggle": true, "freq": 2000, "q": 3 },
+        "lfo": { "toggle": false },
+        "distortion": { "toggle": false },
+        "reverb": { "toggle": false },
+        "speed": { "toggle": true, "value": 1.8 }
+      },
+      "deepVoice": {
+        "delay": { "toggle": false },
+        "filter": { "toggle": true, "freq": 500, "q": 2 },
+        "lfo": { "toggle": false },
+        "distortion": { "toggle": false },
+        "reverb": { "toggle": true, "decay": 2.0, "mix": 0.3 },
+        "speed": { "toggle": true, "value": 0.7 }
+      }
+    }
+  }

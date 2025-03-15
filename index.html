@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOC MC LOVE CLUB CONSOLE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="smiley_32.png">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div class="containerflex">
+        <div id="leftpanel">
+            <h1>LAND OF CONFUSION <br />MC LOVE CLUB CONSOLE</h1>
+            <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="90" fill="yellow" stroke="black" stroke-width="5" />
+                <circle cx="70" cy="70" r="10" fill="black" />
+                <circle cx="130" cy="70" r="10" fill="black" />
+                <path d="M 60 130 Q 100 170, 140 130" stroke="black" stroke-width="5" fill="transparent"
+                    stroke-linecap="round" />
+            </svg>
+
+            <div class="note">
+                <strong>Note:</strong> Chargement des voix disponibles...
+            </div>
+
+            <div>
+                <label for="text">Texte à synthétiser (en anglais) :</label>
+                <textarea id="text" placeholder="Enter your text here..."></textarea>
+            </div>
+
+            <div>
+                <label for="voice">Voix :</label>
+                <select id="voice">
+                    <option value="en">English (Amy)</option>
+                </select>
+            </div>
+            <div>
+                <button id="synthesize">Synthétiser <span id="spinner" class="loading-spinner"
+                        style="display: none;"></span></button>
+            </div>
+            <div id="status"></div>
+
+            <div id="audioControls">
+                <audio id="audio" controls crossorigin="anonymous"></audio>
+                <div>
+                    <label><input type="checkbox" id="loop-audio"> Lecture en boucle</label>
+                    <button id="download">Télécharger l'audio</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="rightpanel" class="effects-panel">
+            <h3>Effets Audio</h3>
+            <div class="effect-group" id="playback-speed-group">
+                <div class="effect-toggle">
+                    <input type="checkbox" id="speed-toggle" class="effect-checkbox" checked>
+                    <label for="speed-toggle">Vitesse de lecture</label>
+                </div>
+                <div class="effect-params">
+                    <div>
+                        <label for="playback-speed">Vitesse: </label>
+                        <input type="range" id="playback-speed" class="effect-slider" min="0.5" max="2.0" value="1.0"
+                            step="0.1">
+                        <span id="playback-speed-value" class="slider-value">1.0</span>x
+                    </div>
+                </div>
+            </div>
+
+            <div class="effects-mode">
+                <div class="mode-toggle">
+                    <div class="mode-option mode-active" data-mode="realtime">Temps réel</div>
+                    <div class="mode-option" data-mode="processed">Pré-traité</div>
+                </div>
+
+                <div class="presets-container">
+                    <div class="presets-header">
+                        <h4>Presets</h4>
+                        <div class="preset-actions">
+                            <button id="save-preset" title="Sauvegarder configuration actuelle">💾</button>
+                            <button id="refresh-presets" title="Rafraîchir la liste">🔄</button>
+                        </div>
+                    </div>
+                    <div class="presets">
+                        <button class="preset-button" data-preset="none">Aucun effet</button>
+                        <!-- Les autres presets seront ajoutés dynamiquement -->
+                    </div>
+                    <!-- Tooltip pour le clic droit -->
+                    <div class="context-tip">Clic droit pour supprimer</div>
+
+                    <!-- Boîte de dialogue modale pour sauvegarder un preset -->
+                    <div class="modal-container" id="preset-modal">
+                        <div class="modal-content">
+                            <div class="form-group">
+                                <label for="preset-name">Nom du preset:</label>
+                                <input type="text" id="preset-name" placeholder="Entrez un nom">
+                            </div>
+                            <div class="form-actions">
+                                <button id="cancel-save">Annuler</button>
+                                <button id="confirm-save">Sauvegarder</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <canvas id="visualizer" class="visualizer"></canvas>
+
+            <div class="effect-group" id="delay-group">
+                <div class="effect-toggle">
+                    <input type="checkbox" id="delay-toggle" class="effect-checkbox" checked>
+                    <label for="delay-toggle">Delay (écho)</label>
+                </div>
+                <div class="effect-params">
+                    <div>
+                        <label for="delay-time">Temps: </label>
+                        <input type="range" id="delay-time" class="effect-slider" min="0.1" max="1.0" value="0.3"
+                            step="0.01">
+                        <span id="delay-time-value" class="slider-value">0.3</span> s
+                    </div>
+                    <div>
+                        <label for="delay-feedback">Feedback: </label>
+                        <input type="range" id="delay-feedback" class="effect-slider" min="0" max="0.9" value="0.5"
+                            step="0.01">
+                        <span id="delay-feedback-value" class="slider-value">0.5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="effect-group" id="filter-group">
+                <div class="effect-toggle">
+                    <input type="checkbox" id="filter-toggle" class="effect-checkbox" checked>
+                    <label for="filter-toggle">Filtre (phaser/flanger)</label>
+                </div>
+                <div class="effect-params">
+                    <div>
+                        <label for="filter-freq">Fréquence: </label>
+                        <input type="range" id="filter-freq" class="effect-slider" min="200" max="8000" value="1000"
+                            step="100">
+                        <span id="filter-freq-value" class="slider-value">1000</span> Hz
+                    </div>
+                    <div>
+                        <label for="filter-q">Résonance: </label>
+                        <input type="range" id="filter-q" class="effect-slider" min="1" max="30" value="5" step="1">
+                        <span id="filter-q-value" class="slider-value">5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="effect-group" id="lfo-group">
+                <div class="effect-toggle">
+                    <input type="checkbox" id="lfo-toggle" class="effect-checkbox">
+                    <label for="lfo-toggle">LFO (Oscillateur)</label>
+                </div>
+                <div class="effect-params">
+                    <div>
+                        <label for="lfo-freq">Fréquence: </label>
+                        <input type="range" id="lfo-freq" class="effect-slider" min="0.1" max="20" value="2" step="0.1">
+                        <span id="lfo-freq-value" class="slider-value">2</span> Hz
+                    </div>
+                    <div>
+                        <label for="lfo-depth">Amplitude: </label>
+                        <input type="range" id="lfo-depth" class="effect-slider" min="0" max="100" value="50" step="1">
+                        <span id="lfo-depth-value" class="slider-value">50</span>%
+                    </div>
+                    <div>
+                        <label for="lfo-target">Paramètre cible: </label>
+                        <select id="lfo-target" class="effect-select">
+                            <option value="filter-freq">Fréquence du filtre</option>
+                            <option value="filter-q">Résonance du filtre</option>
+                            <option value="delay-time">Temps de délai</option>
+                            <option value="distortion-amount">Niveau de distortion</option>
+                            <option value="reverb-mix">Mix de réverbération</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="lfo-wave">Forme d'onde: </label>
+                        <select id="lfo-wave" class="effect-select">
+                            <option value="sine">Sinusoïdale</option>
+                            <option value="square">Carrée</option>
+                            <option value="sawtooth">Dent de scie</option>
+                            <option value="triangle">Triangulaire</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="effect-group" id="distortion-group">
+                <div class="effect-toggle">
+                    <input type="checkbox" id="distortion-toggle" class="effect-checkbox">
+                    <label for="distortion-toggle">Distortion</label>
+                </div>
+                <div class="effect-params">
+                    <div>
+                        <label for="distortion-amount">Quantité: </label>
+                        <input type="range" id="distortion-amount" class="effect-slider" min="0" max="1" value="0.2"
+                            step="0.01">
+                        <span id="distortion-amount-value" class="slider-value">0.2</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="effect-group" id="reverb-group">
+                <div class="effect-toggle">
+                    <input type="checkbox" id="reverb-toggle" class="effect-checkbox" checked>
+                    <label for="reverb-toggle">Réverbération</label>
+                </div>
+                <div class="effect-params">
+                    <div>
+                        <label for="reverb-decay">Déclin: </label>
+                        <input type="range" id="reverb-decay" class="effect-slider" min="0.1" max="10" value="2.0"
+                            step="0.1">
+                        <span id="reverb-decay-value" class="slider-value">2.0</span> s
+                    </div>
+                    <div>
+                        <label for="reverb-mix">Mix: </label>
+                        <input type="range" id="reverb-mix" class="effect-slider" min="0" max="1" value="0.3"
+                            step="0.01">
+                        <span id="reverb-mix-value" class="slider-value">0.3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+    <script src="synthesis.js"></script>
+</body>
+
+</html>

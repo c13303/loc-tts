@@ -1,0 +1,300 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+select,
+button {
+    padding: 8px 15px;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#status {
+    margin-top: 10px;
+    padding: 10px;
+    display: none;
+}
+
+.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+.error {
+    background-color: #f2dede;
+    color: #a94442;
+}
+
+.info {
+    background-color: #d9edf7;
+    color: #31708f;
+}
+
+#audioControls {
+    margin-top: 20px;
+    display: none;
+}
+
+.note {
+    background-color: #fcf8e3;
+    border-left: 4px solid #faebcc;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: #8a6d3b;
+}
+
+.effects-panel {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.effect-group {
+    margin-bottom: 15px;
+}
+
+.effect-toggle {
+    margin-bottom: 10px;
+}
+
+.effect-params {
+    margin-left: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-left: 3px solid #4CAF50;
+}
+
+.effect-slider {
+    width: 100%;
+    margin: 5px 0;
+}
+
+.slider-value {
+    display: inline-block;
+    min-width: 30px;
+    text-align: right;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+.effects-mode {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.mode-toggle {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.mode-option {
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.mode-active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.visualizer {
+    width: 100%;
+    height: 60px;
+    background-color: #000;
+    margin-bottom: 10px;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, .3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Styles pour les presets */
+.presets-container {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #f5f5f5;
+}
+
+.presets-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.presets-header h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.preset-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 2px 5px;
+    margin-left: 5px;
+    border-radius: 3px;
+}
+
+.preset-actions button:hover {
+    background-color: #e0e0e0;
+}
+
+.presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.preset-button {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    background-color: #2196F3;
+    color: white;
+    font-size: 14px;
+    position: relative;
+}
+
+.preset-button.selected {
+    outline: 2px solid #ff9800;
+}
+
+.preset-button.add-preset {
+    background-color: #9c27b0;
+}
+
+.preset-button:hover::after {
+    content: attr(data-preset);
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* Tooltip pour le clic droit */
+.context-tip {
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    z-index: 1000;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+/* Styles pour la boîte de dialogue modale */
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    width: 300px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.form-actions button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#cancel-save {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+#confirm-save {
+    background-color: #4CAF50;
+    color: white;
+}

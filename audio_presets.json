@@ -1,0 +1,213 @@
+{
+  "robot": {
+    "delay": {
+      "toggle": false
+    },
+    "filter": {
+      "toggle": true,
+      "freq": 1500,
+      "q": 15
+    },
+    "lfo": {
+      "toggle": true,
+      "freq": 4,
+      "depth": 70,
+      "target": "filter-freq",
+      "wave": "square"
+    },
+    "distortion": {
+      "toggle": true,
+      "amount": 0.3
+    },
+    "reverb": {
+      "toggle": false
+    }
+  },
+  "underwater": {
+    "delay": {
+      "toggle": true,
+      "time": 0.2,
+      "feedback": 0.6
+    },
+    "filter": {
+      "toggle": true,
+      "freq": 800,
+      "q": 8
+    },
+    "lfo": {
+      "toggle": true,
+      "freq": 0.5,
+      "depth": 80,
+      "target": "filter-freq",
+      "wave": "sine"
+    },
+    "distortion": {
+      "toggle": false
+    },
+    "reverb": {
+      "toggle": true,
+      "decay": 3,
+      "mix": 0.5
+    }
+  },
+  "echo": {
+    "delay": {
+      "toggle": true,
+      "time": 0.5,
+      "feedback": 0.7
+    },
+    "filter": {
+      "toggle": false
+    },
+    "lfo": {
+      "toggle": false
+    },
+    "distortion": {
+      "toggle": false
+    },
+    "reverb": {
+      "toggle": false
+    }
+  },
+  "cathedral": {
+    "delay": {
+      "toggle": true,
+      "time": 0.3,
+      "feedback": 0.3
+    },
+    "filter": {
+      "toggle": false
+    },
+    "lfo": {
+      "toggle": false
+    },
+    "distortion": {
+      "toggle": false
+    },
+    "reverb": {
+      "toggle": true,
+      "decay": 5,
+      "mix": 0.7
+    }
+  },
+  "JARDILAND": {
+    "delay": {
+      "toggle": true,
+      "time": 0.03,
+      "feedback": 0.67
+    },
+    "filter": {
+      "toggle": false,
+      "freq": 1000,
+      "q": 5
+    },
+    "lfo": {
+      "toggle": false,
+      "freq": 2,
+      "depth": 50,
+      "target": "filter-freq",
+      "wave": "sine"
+    },
+    "distortion": {
+      "toggle": false,
+      "amount": 0.2
+    },
+    "reverb": {
+      "toggle": false,
+      "decay": 2,
+      "mix": 0.3
+    }
+  },
+  "LONDE2": {
+    "delay": {
+      "toggle": true,
+      "time": 0.02,
+      "feedback": 0.84
+    },
+    "filter": {
+      "toggle": false,
+      "freq": 6800,
+      "q": 13
+    },
+    "lfo": {
+      "toggle": true,
+      "freq": 1.2,
+      "depth": 9,
+      "target": "delay-time",
+      "wave": "sine"
+    },
+    "distortion": {
+      "toggle": false,
+      "amount": 0.2
+    },
+    "reverb": {
+      "toggle": false,
+      "decay": 2,
+      "mix": 0.3
+    }
+  },
+  "TEST": {
+    "delay": {
+      "toggle": false,
+      "time": 0.3,
+      "feedback": 0.5
+    },
+    "filter": {
+      "toggle": false,
+      "freq": 1000,
+      "q": 5
+    },
+    "lfo": {
+      "toggle": false,
+      "freq": 2,
+      "depth": 50,
+      "target": "filter-freq",
+      "wave": "sine"
+    },
+    "distortion": {
+      "toggle": false,
+      "amount": 0.2
+    },
+    "reverb": {
+      "toggle": false,
+      "decay": 2,
+      "mix": 0.3
+    },
+    "speed": {
+      "toggle": false,
+      "value": 1
+    }
+  },
+  "rollercoster": {
+    "delay": {
+      "toggle": true,
+      "time": 0.02,
+      "feedback": 0.84
+    },
+    "filter": {
+      "toggle": false,
+      "freq": 6800,
+      "q": 13
+    },
+    "lfo": {
+      "toggle": true,
+      "freq": 0.1,
+      "depth": 9,
+      "target": "delay-time",
+      "wave": "sine"
+    },
+    "distortion": {
+      "toggle": false,
+      "amount": 0.2
+    },
+    "reverb": {
+      "toggle": false,
+      "decay": 2,
+      "mix": 0.3
+    },
+    "speed": {
+      "toggle": true,
+      "value": 0.7
+    }
+  }
+}
