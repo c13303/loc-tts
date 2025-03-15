@@ -44,3 +44,4 @@ tts_cache/
 public/wav/
 
 audio/*
+*.onnx
